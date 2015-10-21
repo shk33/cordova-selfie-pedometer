@@ -28,6 +28,14 @@
            
         initPage();
     });
+
+    $(document).on("pageinit", "#features", function(e) {
+        e.preventDefault();
+        var callback = {};
+        callback.onSuccess = onSuccess;
+        callback.onError = onError;
+        watchID = compassManager.startWatchHeading(callback);          
+    });
     
     $(document).on("pagebeforehide", "#compass", function(e) {
         
@@ -41,7 +49,9 @@
     }
     
     function onSuccess(heading) {
+        console.log(degrees);
         $("#compassHeading").html("Heading: " + heading.magneticHeading);    
+        degrees = heading.magneticHeading;
     }
     
     function onError(error) {

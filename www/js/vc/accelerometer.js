@@ -28,6 +28,30 @@
     initPage();
   });
 
+  $(document).on("pageinit", "#features", function (e) {
+    e.preventDefault();
+
+    $("#startWatchAcceleration").on("tap", function (e) {
+      e.preventDefault();
+
+      enableStartWatchAccelerationButton(false);
+      var callback = {};
+
+      callback.onSuccess = onSuccess;
+      callback.onError   = onError;
+
+      watchID = accelerometerManager.startWatchAcceleration(callback);
+    });
+
+    $("#stopWatchAcceleration").on("tap", function (e) {
+      e.preventDefault();
+      enableStartWatchAccelerationButton(true);
+      accelerometerManager.stopWatchAcceleration(watchID);
+    });
+
+    initPage();
+  });
+
   $(document).on("pagebeforehide",  "#accelerometer", function(e) {                 
     accelerometerManager.stopWatchAcceleration(watchID);
     enableStartWatchAccelerationButton(true);

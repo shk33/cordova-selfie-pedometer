@@ -35,6 +35,7 @@
 
 
         <script src="jqueryMobile/jquery-1.11.3.min.js"></script>
+        <script src='js/compass.js'></script>
         
         <script>
             var deviceReadyDeferred = $.Deferred();
@@ -54,6 +55,7 @@
                 
                 //Now everything loads fine, you can safely go to the app home ...
                 $.mobile.changePage("#features");
+                init();
             });
         </script>
         
@@ -78,10 +80,12 @@
                 <ul data-role="listview" id="memoListView">
                     <div data-role="content">
                         <h1>Ejercicio App</h1>
-                        <input type="button" id="startWatchAcceleration" value="Empezar"/>
+                        <input type="button" id="startWatchAcceleration" value="Empezar a contar Pasos"/>
                         <input type="button" id="stopWatchAcceleration" value="Detener"/>
                         <div id="acceleration">
                         </div>                         
+                        <canvas id="compass" width="200" height="200"></canvas>
+                        <div id="compassHeading"></div>
                     </div>
                     <li><a href="#accelerometer">Accelerometer</a></li>
                     <li><a href="#camera">Camera</a></li>
@@ -148,7 +152,7 @@
                 <p>Click 'Start Watch Heading' button below to start watch heading using your device's compass.</p>
                 <input type="button" id="startWatchHeading" value="Start Watch Heading"/>
                 <input type="button" id="stopWatchHeading" value="Stop Watch Heading"/><br/>
-                   
+                <canvas id="compass" width="200" height="200"></canvas>
                 <div id="compassHeading">
                 </div>
             </div>        
@@ -217,7 +221,6 @@
         </div>     
                                 
         <script type="text/javascript" src="cordova.js"></script>
-        
         <!-- API JS files -->
         <script type="text/javascript" src="js/api/AccelerometerManager.js"></script>        
         <script type="text/javascript" src="js/api/FileManager.js"></script>  
