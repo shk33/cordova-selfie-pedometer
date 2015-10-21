@@ -1,34 +1,11 @@
 (function () {
   var accelerometerManager = AccelerometerManager.getInstance();
   var watchID;
+  var enabled = false;
   var calStep = 0.044;
   var steps = 0;
   var calories = 0;
   var delta = 0.110;
-
-  $(document).on("pageinit", "#accelerometer", function (e) {
-    e.preventDefault();
-
-    $("#startWatchAcceleration").on("tap", function (e) {
-      e.preventDefault();
-
-      enableStartWatchAccelerationButton(false);
-      var callback = {};
-
-      callback.onSuccess = onSuccess;
-      callback.onError   = onError;
-
-      watchID = accelerometerManager.startWatchAcceleration(callback);
-    });
-
-    $("#stopWatchAcceleration").on("tap", function (e) {
-      e.preventDefault();
-      enableStartWatchAccelerationButton(true);
-      accelerometerManager.stopWatchAcceleration(watchID);
-    });
-
-    initPage();
-  });
 
   $(document).on("pageinit", "#features", function (e) {
     e.preventDefault();
@@ -36,7 +13,8 @@
     $("#startWatchAcceleration").on("tap", function (e) {
       e.preventDefault();
 
-      enableStartWatchAccelerationButton(false);
+      enabled = false;
+      enableStartWatchAccelerationButton(enabled);
       var callback = {};
 
       callback.onSuccess = onSuccess;
@@ -47,7 +25,9 @@
 
     $("#stopWatchAcceleration").on("tap", function (e) {
       e.preventDefault();
-      enableStartWatchAccelerationButton(true);
+      enabled = true;
+      steps = 0;
+      enableStartWatchAccelerationButton(enabled);
       accelerometerManager.stopWatchAcceleration(watchID);
     });
 
@@ -66,18 +46,20 @@
   function onSuccess(acceleration) {
     stepForce = calculateSteps(acceleration);
     calories = calculateCalories();
-    $("#acceleration").html("Acceleration X: " + acceleration.x + "<br/>" +
-      "Acceleration Y: " + acceleration.y + "<br/>" +
-      "Acceleration Z: " + acceleration.z + "<br/>" +
-      "Pasos: " + steps + "<br/>" +
-      "StepForce: " + stepForce + "<br/>" +
-      "Timestamp: "      + acceleration.timestamp + 
-      "<br/>"+
-      "<div class='nightly-alert nightly-alert-info'><i class='fa fa-2x fa-heartbeat'></i><p>"+
-      "Pasos Caminados " + steps + "</p></div>" +
-      "<div class='nightly-alert nightly-alert-info'><i class='fa fa-2x fa-fire'></i><p>"+
-      "Calorias Quemadas " + calories.toFixed(2) + "</p></div>"
+    if (!enabled) {
+      $("#acceleration").html("Acceleration X: " + acceleration.x + "<br/>" +
+        "Acceleration Y: " + acceleration.y + "<br/>" +
+        "Acceleration Z: " + acceleration.z + "<br/>" +
+        "Pasos: " + steps + "<br/>" +
+        "StepForce: " + stepForce + "<br/>" +
+        "Timestamp: "      + acceleration.timestamp + 
+        "<br/>"+
+        "<div class='nightly-alert nightly-alert-info'><i class='fa fa-2x fa-heartbeat'></i><p>"+
+        "Pasos Caminados " + steps + "</p></div>" +
+        "<div class='nightly-alert nightly-alert-info'><i class='fa fa-2x fa-fire'></i><p>"+
+        "Calorias Quemadas " + calories.toFixed(2) + "</p></div>"
       ); 
+    }
   }
     
   function onError() {
