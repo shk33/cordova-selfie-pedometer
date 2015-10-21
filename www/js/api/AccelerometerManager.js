@@ -5,7 +5,7 @@ var AccelerometerManager = (function () {
     return {
       startWatchAcceleration: function (callback) {
         return navigator.accelerometer
-        .watchAcceleration(callback.onSuccess,callback.onError, {frequency: 500});
+        .watchAcceleration(callback.onSuccess,callback.onError, {frequency: 300});
       },
       stopWatchAcceleration: function (watchID) {
         if (watchID) {

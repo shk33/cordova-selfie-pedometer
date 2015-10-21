@@ -1,6 +1,8 @@
 (function () {
   var accelerometerManager = AccelerometerManager.getInstance();
   var watchID;
+  var steps = 0;
+  var delta = 0.110;
 
   $(document).on("pageinit", "#accelerometer", function (e) {
     e.preventDefault();
@@ -36,15 +38,29 @@
   }
     
   function onSuccess(acceleration) {
+    stepForce = calculateSteps(acceleration);
     $("#acceleration").html("Acceleration X: " + acceleration.x + "<br/>" +
       "Acceleration Y: " + acceleration.y + "<br/>" +
       "Acceleration Z: " + acceleration.z + "<br/>" +
+      "Pasos: " + steps + "<br/>" +
+      "StepForce: " + stepForce + "<br/>" +
       "Timestamp: "      + acceleration.timestamp + "<br/>");    
   }
     
   function onError() {
     $("#acceleration").html("An error occurs during watching acceleration.");
   }  
+
+  function calculateSteps(acceleration) {
+    stepForce = ((acceleration.x * acceleration.x) + (acceleration.y * acceleration.y) + 
+                (acceleration.z * acceleration.z)) / (9.78 * 9.78);
+    var negRange = 1 - delta;
+    var posRange = 1 + delta;
+    if (stepForce >= 1.021) {
+      steps++;
+    }
+    return stepForce;
+  }
     
   function enableStartWatchAccelerationButton(enable) {
     if (enable) {
