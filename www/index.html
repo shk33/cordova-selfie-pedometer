@@ -24,8 +24,16 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/app.css" />
-        <link rel="stylesheet" href="jqueryMobile/jquery.mobile-1.4.5.min.css">    
-              
+        <link rel="stylesheet" href="css/jqeury.mobile.theme.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.min.css" />
+        <link rel="stylesheet" href="css/owl.carousel.css">
+        <link rel="stylesheet" href="css/owl.theme.css">
+        <link rel="stylesheet" href="css/nightly.css" />
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic|Oswald:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
+
+
         <script src="jqueryMobile/jquery-1.11.3.min.js"></script>
         
         <script>
@@ -50,6 +58,8 @@
         </script>
         
         <script src="jqueryMobile/jquery.mobile-1.4.5.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/nightly.js"></script>
         <script src="jqueryMobile/jqm.page.params.js"></script>   
         <script src="jqueryMobile/jquery.validate.min.js"></script>  
         <script src="js/common.js"></script>         
@@ -60,12 +70,19 @@
         <div id="loading" data-role="page">
             <div class="center-screen">Espere por favor ...</div>
         </div>
-        <div data-role="page" id="features">
-            <div data-role="header" data-position="fixed">            
-               <h1>Features</h1>                 
+        <div data-role="page" id="features" data-theme="a">
+            <div data-role="header" data-tap-toggle="false" data-theme='a'>
+                <h1 class="header-title">Exercise App</h1>
             </div>
             <div data-role="content">
                 <ul data-role="listview" id="memoListView">
+                    <div data-role="content">
+                        <h1>Ejercicio App</h1>
+                        <input type="button" id="startWatchAcceleration" value="Empezar"/>
+                        <input type="button" id="stopWatchAcceleration" value="Detener"/>
+                        <div id="acceleration">
+                        </div>                         
+                    </div>
                     <li><a href="#accelerometer">Accelerometer</a></li>
                     <li><a href="#camera">Camera</a></li>
                     <li><a href="#compass">Compass</a></li>
@@ -90,7 +107,7 @@
                 <input type="button" id="stopWatchAcceleration" value="Stop Watch Acceleration"/> 
                 <div id="acceleration">
                 </div>                                                                
-            </div>             
+            </div>         
         </div>         
         
         <div data-role="page" id="camera">

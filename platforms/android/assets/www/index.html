@@ -24,8 +24,16 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/app.css" />
-        <link rel="stylesheet" href="jqueryMobile/jquery.mobile-1.4.5.min.css">    
-              
+        <link rel="stylesheet" href="css/jqeury.mobile.theme.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.min.css" />
+        <link rel="stylesheet" href="css/owl.carousel.css">
+        <link rel="stylesheet" href="css/owl.theme.css">
+        <link rel="stylesheet" href="css/nightly.css" />
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic|Oswald:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
+
+
         <script src="jqueryMobile/jquery-1.11.3.min.js"></script>
         
         <script>
@@ -50,33 +58,35 @@
         </script>
         
         <script src="jqueryMobile/jquery.mobile-1.4.5.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/nightly.js"></script>
         <script src="jqueryMobile/jqm.page.params.js"></script>   
         <script src="jqueryMobile/jquery.validate.min.js"></script>  
         <script src="js/common.js"></script>         
                      
-        <title>Cordova Exhibition</title>
+        <title>Podométro</title>
     </head>
     <body>
         <div id="loading" data-role="page">
-            <div class="center-screen">Please wait ...</div>
+            <div class="center-screen">Espere por favor ...</div>
         </div>
-        <div data-role="page" id="features">
-            <div data-role="header" data-position="fixed">            
-               <h1>Features</h1>                 
+        <div data-role="page" id="features" data-theme="a">
+            <div data-role="header" data-tap-toggle="false" data-theme='a'>
+                <h1 class="header-title">Exercise App</h1>
             </div>
             <div data-role="content">
                 <ul data-role="listview" id="memoListView">
+                    <div data-role="content">
+                        <h1>Ejercicio App</h1>
+                        <input type="button" id="startWatchAcceleration" value="Empezar"/>
+                        <input type="button" id="stopWatchAcceleration" value="Detener"/>
+                        <div id="acceleration">
+                        </div>                         
+                    </div>
                     <li><a href="#accelerometer">Accelerometer</a></li>
                     <li><a href="#camera">Camera</a></li>
                     <li><a href="#compass">Compass</a></li>
-                    <li><a href="#connection">Connection</a></li>                                                               
-                    <li><a href="#contacts">Contacts</a></li>
-                    <li><a href="#device">Device</a></li>
-                    <li><a href="#geolocation">Geolocation</a></li>  
-                    <li><a href="#globalization">Globalization</a></li>
-                    <li><a href="#inAppBrowser">InAppBrowser</a></li>
                     <li><a href="#mediaFC">Media / File / Capture</a></li>
-                    <li><a href="#notification">Notification</a></li>
                     <li><a href="#storage">Storage</a></li>
                 </ul>                  
             </div>
@@ -97,7 +107,7 @@
                 <input type="button" id="stopWatchAcceleration" value="Stop Watch Acceleration"/> 
                 <div id="acceleration">
                 </div>                                                                
-            </div>             
+            </div>         
         </div>         
         
         <div data-role="page" id="camera">
@@ -144,101 +154,6 @@
             </div>        
         </div>              
         
-        <div data-role="page" id="connection">
-            <div data-role="header">                               
-                <h1>Connection</h1>                                  
-                <a href="#" data-role="button" data-rel="back" data-icon="back">Back</a> 
-            </div>
-            <div data-role="content">
-                <h1>Welcome to the Connection Gallery</h1>
-                <p>Click 'Get Connection Type' button below to know the connection type.</p>
-                <input type="button" id="getConnectionType" value="Get Connection Type"/><br/>
-                   
-                <div id="connectionType">
-                </div> 
-            </div>        
-        </div>           
-         
-        <div data-role="page" id="contacts">
-            <div data-role="header">                               
-                <h1>Contacts</h1>                                  
-                <a href="#" data-role="button" data-rel="back" data-icon="back">Back</a> 
-            </div>
-            <div data-role="content">
-                <ul data-role="listview" id="contactList" data-filter="true" data-filter-placeholder="Enter 3+ chars to search ...">
-                </ul>
-            </div>           
-        </div>
-        
-        <div data-role="page" id="contactDetails">
-            <div data-role="header">                               
-                <h1>Contact Details</h1>                                  
-                <a href="#" data-role="button" data-rel="back" data-icon="back">Back</a> 
-            </div>
-            <div data-role="content">
-                <div id="contactInfo"></div>
-            </div>           
-        </div>            
-         
-        <div data-role="page" id="device">
-            <div data-role="header">                               
-                <h1>Device</h1>                                  
-                <a href="#" data-role="button" data-rel="back" data-icon="back">Back</a> 
-            </div>
-            <div data-role="content">
-                <h1>Welcome to the Device Gallery</h1>
-                <p>Click 'Get Device Info' button below to get the device information.</p>
-                <input type="button" id="getDeviceInfo" value="Get Device Info"/><br/>
-                   
-                <div id="deviceInfo">
-                </div>
-            </div>        
-        </div>        
-         
-        <div data-role="page" id="geolocation">
-            <div data-role="header">                               
-                <h1>Geolocation</h1>                                  
-                <a href="#" data-role="button" data-rel="back" data-icon="back">Back</a> 
-            </div>
-            <div data-role="content">
-                <h1>Welcome to the Geolocation Gallery</h1>
-                <p>Click 'Get Current Position' button below to know where you are.</p>
-                <input type="button" id="getCurrentPosition" value="Get Current Position"/><br/>                  
-               
-                <div id="position">
-                </div> 
-            </div>        
-        </div>      
-        
-        <div data-role="page" id="globalization">
-            <div data-role="header">                               
-                <h1>Globalization</h1>                                  
-                <a href="#" data-role="button" data-rel="back" data-icon="back">Back</a> 
-            </div>
-            <div data-role="content">
-                <h1>Welcome to the Globalization Gallery</h1>
-                <p>Click the buttons below to explore globalization.</p>
-                <input type="button" id="getLocaleName" value="Get Locale Name"/>
-                <input type="button" id="getPreferredLanguage" value="Get Preferred Language"/><br/>
-                                      
-                <div id="globInfo">
-                </div>                                                                
-            </div>        
-        </div>
-         
-        <div data-role="page" id="inAppBrowser">
-            <div data-role="header">                               
-                <h1>InAppBrowser</h1>                                  
-                <a href="#" data-role="button" data-rel="back" data-icon="back">Back</a> 
-            </div>
-            <div data-role="content">
-                <h1>Welcome to the InAppBrowser Gallery</h1>
-                <p>Click the button below to open the inAppBrowser which will close after 10 seconds.</p>
-                
-                <input type="button" id="openGoogleSearchPage" value="Open and Close web page"/>
-            </div>           
-        </div>          
-        
         <div data-role="page" id="mediaFC">
             <div data-role="header">                               
                 <h1>Media / Capture</h1>                                  
@@ -269,27 +184,6 @@
                  </div>
             </div>                 
         </div>               
-        
-        <div data-role="page" id="notification">
-            <div data-role="header">                               
-                <h1>Notification</h1>                                  
-                <a href="#" data-role="button" data-rel="back" data-icon="back">Back</a> 
-            </div>
-            <div data-role="content">
-                <h1>Welcome to the Notification Gallery</h1>
-                <p>Click the buttons below to check notifications.</p>
-                <div data-role="fieldcontain">
-                    <input type="button" id="showAlert" value="Show Alert"/>
-                    <input type="button" id="showConfirm" value="Show Confirm"/>
-                    <input type="button" id="showPrompt" value="Show Prompt"/>
-                    <input type="button" id="vibrate" value="Vibrate"/>
-                    <input type="button" id="beep" value="Beep"/>
-                                                                                
-                    <div id="notificationResult">
-                    </div>                                                                
-                </div>
-            </div>             
-        </div>         
         
         <div data-role="page" id="storage">
             <div data-role="header">                               
