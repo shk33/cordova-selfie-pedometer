@@ -1,7 +1,9 @@
 (function () {
   var accelerometerManager = AccelerometerManager.getInstance();
   var watchID;
+  var calStep = 0.044;
   var steps = 0;
+  var calories = 0;
   var delta = 0.110;
 
   $(document).on("pageinit", "#accelerometer", function (e) {
@@ -63,12 +65,19 @@
     
   function onSuccess(acceleration) {
     stepForce = calculateSteps(acceleration);
+    calories = calculateCalories();
     $("#acceleration").html("Acceleration X: " + acceleration.x + "<br/>" +
       "Acceleration Y: " + acceleration.y + "<br/>" +
       "Acceleration Z: " + acceleration.z + "<br/>" +
       "Pasos: " + steps + "<br/>" +
       "StepForce: " + stepForce + "<br/>" +
-      "Timestamp: "      + acceleration.timestamp + "<br/>");    
+      "Timestamp: "      + acceleration.timestamp + 
+      "<br/>"+
+      "<div class='nightly-alert nightly-alert-info'><i class='fa fa-2x fa-heartbeat'></i><p>"+
+      "Pasos Caminados " + steps + "</p></div>" +
+      "<div class='nightly-alert nightly-alert-info'><i class='fa fa-2x fa-fire'></i><p>"+
+      "Calorias Quemadas " + calories.toFixed(2) + "</p></div>"
+      ); 
   }
     
   function onError() {
@@ -84,6 +93,10 @@
       steps++;
     }
     return stepForce;
+  }
+
+  function calculateCalories() {
+    return steps*calStep;
   }
     
   function enableStartWatchAccelerationButton(enable) {

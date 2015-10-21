@@ -50,7 +50,7 @@
     
     function onSuccess(heading) {
         console.log(degrees);
-        $("#compassHeading").html("Heading: " + heading.magneticHeading);    
+        $("#compassHeading").html("<h3>Orientación: " + heading.magneticHeading +" Grados </h3>");    
         degrees = heading.magneticHeading;
     }
     

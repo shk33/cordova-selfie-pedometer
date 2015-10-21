@@ -1,7 +1,5 @@
 // Global variable
 var img = null,
-  compassManager = CompassManager.getInstance(),
-  watchID = null,
   needle = null,
   ctx = null,
   degrees = 0;
@@ -32,10 +30,6 @@ function draw() {
 
   // Restore the previous drawing state
   ctx.restore();
-  callback.onSuccess = onSuccess;
-  callback.onError = onError;
-  watchID = compassManager.startWatchHeading(callback);
-
   // Increment the angle of the needle by 5 degrees
   // degrees += 5;
 }
@@ -65,13 +59,3 @@ function init() {
     alert("Canvas not supported!");
   }
 }
-
-function onSuccess(heading) {
-  console.log(degrees);
-  $("#compassHeading").html("Heading: " + heading.magneticHeading);    
-  degrees(heading.magneticHeading);
-  }
-    
-function onError(error) {
-  $("#compassHeading").html("An error occurs during watch heading: " + error.code);
-} 
