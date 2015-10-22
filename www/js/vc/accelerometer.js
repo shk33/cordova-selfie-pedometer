@@ -47,17 +47,10 @@
     stepForce = calculateSteps(acceleration);
     calories = calculateCalories();
     if (!enabled) {
-      $("#acceleration").html("Acceleration X: " + acceleration.x + "<br/>" +
-        "Acceleration Y: " + acceleration.y + "<br/>" +
-        "Acceleration Z: " + acceleration.z + "<br/>" +
-        "Pasos: " + steps + "<br/>" +
-        "StepForce: " + stepForce + "<br/>" +
-        "Timestamp: "      + acceleration.timestamp + 
-        "<br/>"+
-        "<div class='nightly-alert nightly-alert-info'><i class='fa fa-2x fa-heartbeat'></i><p>"+
-        "Pasos Caminados " + steps + "</p></div>" +
+      $("#acceleration").html("<div class='nightly-alert nightly-alert-info'><i class='fa fa-2x fa-heartbeat'></i><p>"+
+        "Pasos Caminados: " + steps + "</p></div>" +
         "<div class='nightly-alert nightly-alert-info'><i class='fa fa-2x fa-fire'></i><p>"+
-        "Calorias Quemadas " + calories.toFixed(2) + "</p></div>"
+        "Calorias Quemadas: " + calories.toFixed(2) + "</p></div>"
       ); 
     }
   }
