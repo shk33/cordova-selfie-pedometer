@@ -12,7 +12,7 @@
 
     $("#startWatchAcceleration").on("tap", function (e) {
       e.preventDefault();
-
+      steps = 0;
       enabled = false;
       enableStartWatchAccelerationButton(enabled);
       var callback = {};
